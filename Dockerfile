@@ -17,19 +17,13 @@ RUN curl -L https://github.com/bazelbuild/bazel/releases/download/0.5.2/bazel-0.
 
 RUN git clone https://github.com/google/copybara.git /tmp/copybara \
     && cd /tmp/copybara \
-    && bazel build //java/com/google/copybara \
+    && bazel build //java/com/google/copybara:copybara_deploy.jar \
     && bazel test //javatests/com/google/copybara:all \
     && bazel test //copybara/integration:all
 
-RUN ln -s /tmp/copybara/bazel-bin/java/com/google/copybara/copybara /usr/local/bin/copybara 
+FROM openjdk:8u131-jre-alpine
 
-ENTRYPOINT ["copybara"]
-
-# TODO: use multi-stage builds once I figure out how to relocate a binary built by bazel
-
-# FROM openjdk:8u131-jre-alpine
-# FROM ubuntu:16.04
-
-# RUN mkdir -p /opt/copybara
-    # && apk add --no-cache bash
-# COPY --from=builder /tmp/copybara/bazel-bin/java/com/google/copybara/ /opt/copybara
+RUN mkdir -p /opt/copybara \
+  && apk add --no-cache git
+COPY --from=builder /tmp/copybara/bazel-bin/java/com/google/copybara/copybara_deploy.jar /opt/copybara/copybara_deploy.jar
+ENTRYPOINT ["java", "-jar", "/opt/copybara/copybara_deploy.jar"]
