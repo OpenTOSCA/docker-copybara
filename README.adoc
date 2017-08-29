@@ -1,0 +1,26 @@
+= Docker Copybara
+:toc:
+:uri-copybara: https://github.com/google/copybara
+
+NOTE: This is experimental and a work in progress.
+
+== Building
+
+Requires a Docker version that supports multi-stage builds:
+
+[source]
+----
+docker build -t copybara
+----
+
+== Running Copybara
+
+[source]
+----
+docker run -it --rm --mount type=bind,source="$PWD",target="$PWD" -w "$PWD" --mount type=bind,source="$HOME",target="/root" -e HOME="$HOME" copybara copy.bara.sky
+----
+
+.TODO: deal with user and email not being set for Git
+....
+ERROR: 'user.name' and/or 'user.email' are not configured. Please run `git config --global SETTING VALUE` to set them
+....
