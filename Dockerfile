@@ -25,6 +25,6 @@ RUN git clone https://github.com/google/copybara.git /tmp/copybara \
 FROM openjdk:8u131-jre-alpine
 
 RUN mkdir -p /opt/copybara \
-  && apk add --no-cache git
+  && apk add --no-cache git openssh
 COPY --from=builder /tmp/copybara/bazel-bin/java/com/google/copybara/copybara_deploy.jar /opt/copybara/copybara_deploy.jar
 ENTRYPOINT ["java", "-jar", "/opt/copybara/copybara_deploy.jar"]
