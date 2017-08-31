@@ -17,7 +17,7 @@ docker build -t copybara
 
 [source]
 ----
-docker run -it --rm --mount type=bind,source="$PWD",target="$PWD" -w "$PWD" --mount type=bind,source="$HOME",target="/root" -e HOME="$HOME" copybara copy.bara.sky
+docker run -it --rm --mount type=bind,source="$PWD",target="$PWD" -w "$PWD" --mount type=bind,source="$HOME",target="/root" -e HOME="/root" copybara copy.bara.sky
 ----
 
 .TODO: deal with user and email not being set for Git
