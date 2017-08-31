@@ -1,6 +1,6 @@
 FROM ubuntu:16.04 as builder
 
-ARG bazel_version="0.5.3"
+ARG bazel_version="0.5.4"
 RUN echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" > /etc/apt/sources.list.d/bazel.list \
     && apt-get -y update \
     && apt-get install -y curl git \
