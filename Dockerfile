@@ -1,6 +1,6 @@
 FROM ubuntu:16.04 as builder
 
-ARG bazel_version="0.5.4"
+ARG bazel_version=0.10.1"
 RUN echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" > /etc/apt/sources.list.d/bazel.list \
     && apt-get -y update \
     && apt-get install -y curl git \
@@ -16,13 +16,12 @@ RUN curl --fail -L https://github.com/bazelbuild/bazel/releases/download/${bazel
     && /tmp/bazel-${bazel_version}-installer-linux-x86_64.sh
 
 # TODO: get specific copybara revision for determinism
-RUN git clone https://github.com/google/copybara.git /tmp/copybara \
+RUN git clone --depth=1 https://github.com/google/copybara.git /tmp/copybara \
     && cd /tmp/copybara \
-    && bazel build //java/com/google/copybara:copybara_deploy.jar \
-    && bazel test //javatests/com/google/copybara:all \
-    && bazel test //copybara/integration:all
+    && bazel build //java/com/google/copybara \
+    && bazel build //java/com/google/copybara:copybara_deploy.jar
 
-FROM openjdk:8u131-jre-alpine
+FROM openjdk:8-jre-alpine
 
 RUN mkdir -p /opt/copybara \
   && apk add --no-cache git openssh
