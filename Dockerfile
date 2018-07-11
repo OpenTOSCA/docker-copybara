@@ -12,7 +12,9 @@ RUN pacman -Syu --noconfirm \
     && pacman -S openssh --needed --noconfirm
 
 # set git config and clone copybare
-RUN git clone https://github.com/google/copybara.git
+RUN git config --global user.name "OpenTOSCA Bot" \
+    && git config --global user.email "opentosca@iaas.uni-stuttgart.de" \
+    && git clone https://github.com/google/copybara.git
 
 # go to directory where to build copybara
 WORKDIR copybara

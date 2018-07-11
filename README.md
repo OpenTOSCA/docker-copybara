@@ -30,25 +30,12 @@ docker build --rm -t copybara .
 - `<targetRepository>` has to contain the target repository, if you use a local one.
 - `<originRepository>` and `<targetRepository>` has to be specified in the config file `copy.bara.sky`.
 
-## Running Copybara with Local Repository
+## Running Copybara
 
 Run the command in the directory `<wd>`:
 
 ```
 docker run -v ~/.gitconfig:/root/.gitconfig -v "$(pwd)":/tmp/copybara -it copybara:latest copybara copy.bara.sky --force
-```
-
-## Running Repository with Remote Repository
-
-Also sharing ssh key with the docker container.
-
-- Remote access only works with ssh key without passphrase.
-- Maybe you have to change the ownership of the ssh config file to root `chown root ~/.ssh/config`.
-
-Run the command in the directory `<wd>`:
-
-```
-docker run -v ~/.ssh:/root/.ssh -v ~/.gitconfig:/root/.gitconfig -v "$(pwd)":/tmp/copybara -it copybara:latest copybara copy.bara.sky --force
 ```
 
 ## Example with Linux Bash
@@ -94,7 +81,7 @@ core.workflow(
 At last you can run the copybara in the docker container:
 
 ```
-$ docker run -v ~/.gitconfig:/root/.gitconfig -v "$(pwd)":/tmp/copybara -it copybara:latest copybara copy.bara.sky --force
+docker run -v "$(pwd):/tmp/copybara" -it copybara:latest copybara copy.bara.sky --force
 ```
 
 This will copy the content of the origin repository to the target repository you created in `targetRepo`.
