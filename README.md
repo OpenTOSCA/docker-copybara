@@ -5,7 +5,7 @@ A docker image for [Google's Copybara](https://github.com/google/copybara), whic
 
 ## Dockerfile
 
-With the prepared `Dockerfile` you can build a container where you can run `copybara` in a container with `base/archlinux`.
+With the prepared `Dockerfile` you can build a container where you can run `copybara` in a container with [base/archlinux](https://hub.docker.com/r/base/archlinux/) image.
 
 ## Building
 
@@ -35,7 +35,7 @@ docker build --rm -t copybara .
 Run the command in the directory `<wd>`:
 
 ```
-docker run -v "$(pwd):/tmp/copybara" -it copybara:latest copybara copy.bara.sky --force
+docker run -v "$(pwd):/tmp/copybara" -it opentosca/copybara:latest copybara copy.bara.sky --force
 ```
 
 ## Example with Linux Bash
@@ -81,7 +81,7 @@ core.workflow(
 At last you can run the copybara in the docker container:
 
 ```
-docker run -v "$(pwd):/tmp/copybara" -it copybara:latest copybara copy.bara.sky --force
+docker run -v "$(pwd):/tmp/copybara" -it opentosca/copybara:latest copybara copy.bara.sky --force
 ```
 
 This will copy the content of the origin repository to the target repository you created in `targetRepo`.
