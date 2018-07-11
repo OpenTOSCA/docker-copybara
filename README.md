@@ -35,7 +35,7 @@ docker build --rm -t copybara .
 Run the command in the directory `<wd>`:
 
 ```
-docker run -v ~/.gitconfig:/root/.gitconfig -v "$(pwd)":/tmp/copybara -it copybara:latest copybara copy.bara.sky --force
+docker run -v "$(pwd):/tmp/copybara" -it copybara:latest copybara copy.bara.sky --force
 ```
 
 ## Example with Linux Bash
