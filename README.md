@@ -1,9 +1,16 @@
+**This repository and the respective Docker build is outdated.
+Please use another Docker build.
+See [copybara#82](https://github.com/google/copybara/issues/82) for hints.**
+
 # Docker Copybara [![](https://images.microbadger.com/badges/image/opentosca/copybara.svg)](https://microbadger.com/images/opentosca/copybara)
 
 > A docker image for [Google's Copybara](https://github.com/google/copybara)
 
 Copybara is the successor of [Google's Makeing Opensource Easy](https://github.com/google/moe).
 [koppor's git-oss-releaser](https://github.com/koppor/git-oss-releaser) does not have the same functionalities as Copybara.
+
+Google does not publish a docker image on his own.
+See [copybara#82](https://github.com/google/copybara/issues/82) for the discussion.
 
 ## Dockerfile
 
